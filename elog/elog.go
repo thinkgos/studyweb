@@ -13,7 +13,7 @@ type Provider interface {
 	Error(format string, v ...interface{})
 	Warning(format string, v ...interface{})
 	Notice(format string, v ...interface{})
-	Informational(format string, v ...interface{})
+	Info(format string, v ...interface{})
 	Debug(format string, v ...interface{})
 }
 
@@ -28,14 +28,8 @@ type Elog struct {
 
 // NewElog new a elog control
 // default disable log, if p nil empty log,other use p log
-func NewElog(p Provider) *Elog {
-	l := &Elog{haslog: 0}
-	if p != nil {
-		l.logger = p
-	} else {
-		l.logger = new(emptyProvider)
-	}
-	return l
+func NewElog() *Elog {
+	return &Elog{new(emptyProvider), 0}
 }
 
 // Mode set enable or diable log output when you has set logger
@@ -101,10 +95,10 @@ func (this *Elog) Notice(format string, v ...interface{}) {
 	}
 }
 
-// Informational Log INFORMATIONAL level message.
-func (this *Elog) Informational(format string, v ...interface{}) {
+// Info Log INFORMATIONAL level message.
+func (this *Elog) Info(format string, v ...interface{}) {
 	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Informational(format, v...)
+		this.logger.Info(format, v...)
 	}
 }
 
@@ -115,7 +109,7 @@ func (this *Elog) Debug(format string, v ...interface{}) {
 	}
 }
 
-/**************************  empty log  ************************************/
+/**************************  default log ************************************/
 var _ Provider = (*emptyProvider)(nil)
 
 // empty log
@@ -144,72 +138,72 @@ func (this *emptyProvider) Warning(string, ...interface{}) {}
 // Notice Log NOTICE level message.
 func (this *emptyProvider) Notice(string, ...interface{}) {}
 
-// Informational Log INFORMATIONAL level message.
-func (this *emptyProvider) Informational(string, ...interface{}) {}
+// Info Log INFORMATIONAL level message.
+func (this *emptyProvider) Info(string, ...interface{}) {}
 
 // Debug Log DEBUG level message.
 func (this *emptyProvider) Debug(string, ...interface{}) {}
 
 /******************  internal default log  ************************************/
-var log = NewElog(nil)
+var logger = NewElog()
 
 // GetElog get internal log instance
 func GetElog() *Elog {
-	return log
+	return logger
 }
 
 // Mode set enable or diable log output when you has set logger
 func Mode(enable bool) {
-	log.Mode(enable)
+	logger.Mode(enable)
 }
 
 // SetProvider set logger provider
 func SetProvider(p Provider) {
-	log.SetProvider(p)
+	logger.SetProvider(p)
 }
 
 // GetProvider Get logger provider
 func GetProvider() Provider {
-	return log.GetProvider()
+	return logger.GetProvider()
 }
 
 // Emergency Log EMERGENCY level message.
 func Emergency(format string, v ...interface{}) {
-	log.Emergency(format, v...)
+	logger.Emergency(format, v...)
 }
 
 // Alert Log ALERT level message.
 func Alert(format string, v ...interface{}) {
-	log.Alert(format, v...)
+	logger.Alert(format, v...)
 }
 
 // Critical Log CRITICAL level message.
 func Critical(format string, v ...interface{}) {
-	log.Critical(format, v...)
+	logger.Critical(format, v...)
 }
 
 // Error Log ERROR level message.
 func Error(format string, v ...interface{}) {
-	log.Error(format, v...)
+	logger.Error(format, v...)
 }
 
 // Warning Log WARNING level message.
 func Warning(format string, v ...interface{}) {
-	log.Warning(format, v...)
+	logger.Warning(format, v...)
 }
 
 // Notice Log NOTICE level message.
 func Notice(format string, v ...interface{}) {
-	log.Notice(format, v...)
+	logger.Notice(format, v...)
 
 }
 
-// Informational Log INFORMATIONAL level message.
-func Informational(format string, v ...interface{}) {
-	log.Informational(format, v...)
+// Info Log INFORMATIONAL level message.
+func Info(format string, v ...interface{}) {
+	logger.Info(format, v...)
 }
 
 // Debug Log DEBUG level message.
 func Debug(format string, v ...interface{}) {
-	log.Debug(format, v...)
+	logger.Debug(format, v...)
 }
