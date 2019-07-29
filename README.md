@@ -9,4 +9,4 @@
 	- 6  ---	 Informational: Informational messages
 	- 7  ---	 Debug: debug-level messages
 }
-- leaktest: goroutine 泄漏测试包
+- secret: 加密
