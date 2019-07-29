@@ -1,4 +1,5 @@
-// package secret imp AES-128 CBC PCKS5 Padding with your salt
+// package secret imp AES-128 CBC PCKS7 Padding with your salt
+// PKCS#5 padding is identical to PKCS#7 padding, PCKS5 use for 64bit padding
 
 package secret
 
@@ -21,13 +22,13 @@ func NewSpecial(salt string) *Secret {
 	return &Secret{salt}
 }
 
-func pcks5Padding(origData []byte, size int) []byte {
+func pcks7Padding(origData []byte, size int) []byte {
 	padSize := size - len(origData)%size
 	padText := bytes.Repeat([]byte{byte(padSize)}, padSize)
 	return append(origData, padText...)
 }
 
-func pcks5UnPadding(origData []byte) ([]byte, error) {
+func pcks7UnPadding(origData []byte) ([]byte, error) {
 	length := len(origData)
 	unPadSize := int(origData[length-1])
 	if unPadSize > length {
@@ -44,7 +45,7 @@ func (this *Secret) Encrypt(key, origData []byte) []byte {
 	if err != nil {
 		panic(err) // never happen
 	}
-	orig := pcks5Padding(origData, block.BlockSize())
+	orig := pcks7Padding(origData, block.BlockSize())
 	out := make([]byte, len(orig))
 	cipher.NewCBCEncrypter(block, iv[:]).CryptBlocks(out, orig)
 	return out
@@ -62,5 +63,5 @@ func (this *Secret) Decrypt(key, origData []byte) ([]byte, error) {
 	}
 	out := make([]byte, len(origData))
 	cipher.NewCBCDecrypter(block, iv[:]).CryptBlocks(out, origData)
-	return pcks5UnPadding(out)
+	return pcks7UnPadding(out)
 }
