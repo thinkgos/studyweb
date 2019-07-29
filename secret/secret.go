@@ -52,6 +52,9 @@ func (this *Secret) Decrypt(key, orgiData []byte) ([]byte, error) {
 	if err != nil {
 		panic(err) // never happen
 	}
+	if len(orgiData)%block.BlockSize() != 0 {
+		return nil, errors.New("input not full blocks")
+	}
 	out := make([]byte, len(orgiData))
 	cipher.NewCBCDecrypter(block, iv[:]).CryptBlocks(out, orgiData)
 	return pcks5UnPadding(out)
