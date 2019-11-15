@@ -33,79 +33,79 @@ func NewElog() *Elog {
 }
 
 // Mode set enable or diable log output when you has set logger
-func (this *Elog) Mode(enable bool) {
+func (sf *Elog) Mode(enable bool) {
 	if enable {
-		atomic.StoreUint32(&this.haslog, 1)
+		atomic.StoreUint32(&sf.haslog, 1)
 	} else {
-		atomic.StoreUint32(&this.haslog, 0)
+		atomic.StoreUint32(&sf.haslog, 0)
 	}
 }
 
 // SetProvider set logger provider
-func (this *Elog) SetProvider(p Provider) {
+func (sf *Elog) SetProvider(p Provider) {
 	if p != nil {
-		this.logger = p
+		sf.logger = p
 	}
 }
 
 // GetProvider Get logger provider
-func (this *Elog) GetProvider() Provider {
-	return this.logger
+func (sf *Elog) GetProvider() Provider {
+	return sf.logger
 }
 
 // Emergency Log EMERGENCY level message.
-func (this *Elog) Emergency(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Emergency(format, v...)
+func (sf *Elog) Emergency(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Emergency(format, v...)
 	}
 }
 
 // Alert Log ALERT level message.
-func (this *Elog) Alert(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Alert(format, v...)
+func (sf *Elog) Alert(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Alert(format, v...)
 	}
 }
 
 // Critical Log CRITICAL level message.
-func (this *Elog) Critical(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Critical(format, v...)
+func (sf *Elog) Critical(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Critical(format, v...)
 	}
 }
 
 // Error Log ERROR level message.
-func (this *Elog) Error(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Error(format, v...)
+func (sf *Elog) Error(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Error(format, v...)
 	}
 }
 
 // Warning Log WARNING level message.
-func (this *Elog) Warning(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Warning(format, v...)
+func (sf *Elog) Warning(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Warning(format, v...)
 	}
 }
 
 // Notice Log NOTICE level message.
-func (this *Elog) Notice(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Notice(format, v...)
+func (sf *Elog) Notice(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Notice(format, v...)
 	}
 }
 
 // Info Log INFORMATIONAL level message.
-func (this *Elog) Info(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Info(format, v...)
+func (sf *Elog) Info(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Info(format, v...)
 	}
 }
 
 // Debug Log DEBUG level message.
-func (this *Elog) Debug(format string, v ...interface{}) {
-	if atomic.LoadUint32(&this.haslog) == 1 {
-		this.logger.Debug(format, v...)
+func (sf *Elog) Debug(format string, v ...interface{}) {
+	if atomic.LoadUint32(&sf.haslog) == 1 {
+		sf.logger.Debug(format, v...)
 	}
 }
 
@@ -121,28 +121,28 @@ func NewEmptyProvider() Provider {
 }
 
 // Emergency Log EMERGENCY level message.
-func (this *emptyProvider) Emergency(string, ...interface{}) {}
+func (sf *emptyProvider) Emergency(string, ...interface{}) {}
 
 // Alert Log ALERT level message.
-func (this *emptyProvider) Alert(string, ...interface{}) {}
+func (sf *emptyProvider) Alert(string, ...interface{}) {}
 
 // Critical Log CRITICAL level message.
-func (this *emptyProvider) Critical(string, ...interface{}) {}
+func (sf *emptyProvider) Critical(string, ...interface{}) {}
 
 // Error Log ERROR level message.
-func (this *emptyProvider) Error(string, ...interface{}) {}
+func (sf *emptyProvider) Error(string, ...interface{}) {}
 
 // Warning Log WARNING level message.
-func (this *emptyProvider) Warning(string, ...interface{}) {}
+func (sf *emptyProvider) Warning(string, ...interface{}) {}
 
 // Notice Log NOTICE level message.
-func (this *emptyProvider) Notice(string, ...interface{}) {}
+func (sf *emptyProvider) Notice(string, ...interface{}) {}
 
 // Info Log INFORMATIONAL level message.
-func (this *emptyProvider) Info(string, ...interface{}) {}
+func (sf *emptyProvider) Info(string, ...interface{}) {}
 
 // Debug Log DEBUG level message.
-func (this *emptyProvider) Debug(string, ...interface{}) {}
+func (sf *emptyProvider) Debug(string, ...interface{}) {}
 
 /******************  internal default log  ************************************/
 var logger = NewElog()

@@ -8,5 +8,3 @@
 	- 5  ---	 Notice: normal but singificant condition
 	- 6  ---	 Informational: Informational messages
 	- 7  ---	 Debug: debug-level messages
-}
-- secret: 加密
