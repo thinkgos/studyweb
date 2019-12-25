@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>template</title>
+
+    <!-- Bootstrap -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<p class="text-danger">
+    虽然不总是必须，但是某些时候你可能需要将某些 DOM 内容放到一个盒子里。对于这种情况，可以试试面板组件.<br>
+    默认的 .panel 组件所做的只是设置基本的边框（border）和内补（padding）来包含内容。
+</p>
+<!--基本实例-->
+<div class="panel panel-default">
+    <div class="panel-body">
+        Basic panel example
+    </div>
+</div>
+
+<!--带标题的面版-->
+<div class="panel panel-default">
+    <div class="panel-heading">Panel heading without title</div>
+    <div class="panel-body">
+        Panel content
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p class="panel-title">Panel title</p>
+    </div>
+    <div class="panel-body">
+        Panel content
+    </div>
+</div>
+<!--带脚注的面版-->
+<div class="panel panel-default">
+    <div class="panel-body">
+        Panel content
+    </div>
+    <div class="panel-footer">Panel footer</div>
+</div>
+<!--
+带情景模式的面板
+panel-success panel-info panel-warning panel-danger
+-->
+<div class="panel panel-default panel-danger">
+    <div class="panel-heading">
+        <div class="panel-title">panel-primary</div>
+    </div>
+</div>
+
+<!--带表格的面版-->
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Panel heading</div>
+    <div class="panel-body">
+        <p>带表格的面版. </p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>first</th>
+            <th>second</th>
+            <th>third</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--带列表组的面板-->
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Panel heading</div>
+    <div class="panel-body">
+        <p>带列表组的面板.</p>
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="static/js/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="static/js/bootstrap.min.js"></script>
+</body>
+</html>
