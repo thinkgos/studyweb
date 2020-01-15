@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>vue-组件-注册</title>
+
+    <!-- Bootstrap -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="components-demo">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+</div>
+
+<script src="static/js/vue.js"></script>
+<script>
+    // 定义一个名为button-counter组件
+    // 组件名风格,全小写,用'-'分隔, 可以采用首字母大写的驼峰形式
+    Vue.component('button-counter', {
+        // data 必须返回一个函数,每个实例维护一份独立的拷贝
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button class="btn btn-info" @click="count++">You clicked me {{ count }} times.</button>'
+    });
+
+    new Vue({
+        el: '#components-demo'
+    });
+
+</script>
+</body>
+</html>
