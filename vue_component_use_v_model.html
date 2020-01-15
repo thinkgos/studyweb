@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-组件-组件上使用v-model和插槽</title>
+</head>
+
+<body>
+    <div id="prop-demo">
+        <label>{{searchText}}</label><br>
+        <custom-input v-model="searchText">我是个插槽</custom-input>
+    </div>
+
+    <script src="static/js/vue.js"></script>
+    <script>
+        Vue.component('custom-input', {
+            props: ['value'],
+            template: `
+            <div>
+                <input
+                v-bind:value="value"
+                v-on:input="$emit('input', $event.target.value)">
+                <slot></slot>
+            </div>`
+        })
+
+        new Vue({
+            el: '#prop-demo',
+            data: {
+                searchText: ""
+            },
+        });
+
+    </script>
+</body>
+
+</html>

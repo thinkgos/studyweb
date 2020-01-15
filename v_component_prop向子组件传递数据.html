@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,45 +11,48 @@
     <!-- Bootstrap -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-<div id="prop-demo">
-    <div :style="{ fontSize: postFontSize + 'em' }">
-        <blog-post
-                v-for="post in posts"
-                v-bind:key="post.id"
-                v-bind:post="post"
-                v-on:enlarge-text="postFontSize += 0.1"
-        ></blog-post>
+    <div id="prop-demo">
+        <div :style="{ fontSize: postFontSize + 'em' }">
+            <!-- enlarge-text 为组件的事件函数,由$emit('enlarge-text')触发 -->
+            <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="onEnlargeText">
+            </blog-post>
+        </div>
     </div>
-</div>
 
-<script src="static/js/vue.js"></script>
-<script>
-    Vue.component('blog-post', {
-        props: ['post'],
-        template: `
-    <div class="blog-post">
-      <h3>{{ post.title }}</h3>
-      <button v-on:click="$emit('enlarge-text')">
-        Enlarge text
-      </button>
-      <div v-html="post.content"></div>
-    </div>
-  `
-    });
+    <script src="static/js/vue.js"></script>
+    <script>
+        Vue.component('blog-post', {
+            props: ['post'],
+            template: `
+                <div class='blog-post'>
+                    <h3>{{ post.title }}</h3>
+                        <button v-on:click="$emit('enlarge-text',0.1)">
+                            Enlarge text
+                        </button>
+                    <div v-html="post.content"></div>
+                </div>`
+        });
 
-    new Vue({
-        el: '#prop-demo',
-        data: {
-            posts: [
-                {id: 1, title: 'My journey with Vue'},
-                {id: 2, title: 'Blogging with Vue'},
-                {id: 3, title: 'Why Vue is so fun'}
-            ],
-            postFontSize: 1
-        }
-    });
+        new Vue({
+            el: '#prop-demo',
+            data: {
+                posts: [
+                    { id: 1, title: 'My journey with Vue', content: '内容ooo1' },
+                    { id: 2, title: 'Blogging with Vue', content: '内容ooo2' },
+                    { id: 3, title: 'Why Vue is so fun', content: '内容ooo3' }
+                ],
+                postFontSize: 1
+            },
+            methods: {
+                onEnlargeText: function (val) {
+                    this.postFontSize += val;
+                }
+            }
+        });
 
-</script>
+    </script>
 </body>
+
 </html>
