@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <title>Document</title>
   <!-- 导入 vue 文件 -->
   <script src="./js/vue.js"></script>
@@ -12,32 +12,32 @@
 </head>
 
 <body>
-  <!-- 被 vm 实例所控制的区域 -->
-  <div id="app">
-    <router-link to="/user">User</router-link>
-    <router-link to="/register">Register</router-link>
+<!-- 被 vm 实例所控制的区域 -->
+<div id="app">
+  <router-link to="/user">User</router-link>
+  <router-link to="/register">Register</router-link>
 
-    <!-- 路由占位符 -->
-    <router-view></router-view>
-  </div>
+  <!-- 路由占位符 -->
+  <router-view></router-view>
+</div>
 
-  <script>
-    const User = {
-      template: '<h1>User 组件</h1>'
-    }
+<script>
+const User = {
+    template: '<h1>User 组件</h1>'
+}
 
-    const Register = {
-      template: `<div>
-          <h1>Register 组件</h1>
-          <hr/>
+const Register = {
+    template: `<div>
+                <h1>Register 组件</h1>
+                <hr/>
 
-          <!-- 子路由链接 -->
-          <router-link to="/register/tab1">tab1</router-link>
-          <router-link to="/register/tab2">tab2</router-link>
+                <!-- 子路由链接 -->
+                <router-link to='/register/tab1'>tab1</router-link>
+                <router-link to='/register/tab2'>tab2</router-link>
 
-          <!-- 子路由的占位符 -->
-          <router-view />
-        <div>`
+                <!-- 子路由的占位符 -->
+                <router-view />
+              <div>`
     }
 
     const Tab1 = {
